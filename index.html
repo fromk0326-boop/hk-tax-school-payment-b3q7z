@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>お申し込み書兼請求書 | 畠山謙人税理士事務所</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    background: #f4f6f9;
+    color: #1a1a1a;
+    font-size: 14px;
+  }
+
+  .no-print {
+    padding: 16px 24px;
+    background: #1a1a2e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .no-print p { color: #aab; font-size: 12px; }
+
+  .btn-pdf {
+    background: #4f8ef7;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .btn-pdf:hover { background: #3a78e0; }
+
+  .page {
+    max-width: 800px;
+    margin: 24px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 48px;
+  }
+
+  /* Header */
+  .doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 3px solid #1a1a2e;
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  .doc-title {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    color: #1a1a2e;
+    white-space: nowrap;
+  }
+  .doc-subtitle {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #555;
+  }
+  .doc-meta {
+    text-align: right;
+    line-height: 1.9;
+    font-size: 13px;
+  }
+  .doc-meta strong { font-size: 15px; }
+
+  /* Recipient */
+  .recipient-block {
+    background: #f8f9fc;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+  }
+  .recipient-block h3 {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+    letter-spacing: 0.08em;
+  }
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .input-row label {
+    font-size: 12px;
+    color: #555;
+    width: 70px;
+    flex-shrink: 0;
+  }
+  .input-row input {
+    flex: 1;
+    border: none;
+    border-bottom: 1.5px solid #bbb;
+    background: transparent;
+    padding: 4px 2px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1a1a2e;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-row input:focus { border-bottom-color: #4f8ef7; }
+
+  /* Greeting */
+  .greeting {
+    line-height: 1.9;
+    color: #333;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  /* Section title */
+  .section-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1a1a2e;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    border-left: 3px solid #4f8ef7;
+  }
+
+  /* Product table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  table thead tr { background: #1a1a2e; color: #fff; }
+  table thead th { padding: 10px 14px; text-align: left; font-weight: normal; }
+  table tbody tr:nth-child(even) { background: #f8f9fc; }
+  table tbody td { padding: 10px 14px; }
+  .amount { text-align: right; font-weight: bold; }
+  .total-row td { border-top: 2px solid #1a1a2e; font-weight: bold; font-size: 15px; }
+
+  /* Payment card */
+  .payment-card {
+    border: 1.5px solid #e0e4ef;
+    border-left: 4px solid #1a1a2e;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .payment-card h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    color: #1a1a2e;
+  }
+  .bank-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .bank-label { color: #888; width: 80px; flex-shrink: 0; }
+  .bank-val { font-weight: bold; color: #1a1a2e; }
+
+  /* After-payment */
+  .after-box {
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .after-box h4 { margin-bottom: 8px; font-size: 13px; color: #1a1a2e; }
+  .after-box a { color: #4f8ef7; }
+
+  /* Contact */
+  .contact-box {
+    background: #f8f9fc;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .contact-box h4 { margin-bottom: 6px; font-size: 13px; }
+
+  /* Issuer */
+  .issuer {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1.5px solid #e0e4ef;
+    text-align: right;
+    font-size: 14px;
+  }
+  .issuer strong { font-size: 16px; display: block; }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .no-print { display: none !important; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 32px;
+    }
+    .input-row input { border-bottom: 1px solid #999; }
+    table thead tr { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <p>📝 お客様情報を入力後、「PDF保存」ボタンを押してください。ブラウザの印刷ダイアログから「PDFに保存」を選択できます。</p>
+  <button class="btn-pdf" onclick="sendAndPrint()">🖨️ PDF保存</button>
+</div>
+
+<div class="page">
+
+  <div class="doc-header">
+    <div style="text-align:center;">
+      <div class="doc-title">お申し込み書兼請求書</div>
+      <div class="doc-subtitle">畠山式AI税理士コミュニティ</div>
+    </div>
+    <div class="doc-meta" style="text-align:right;">
+      <strong id="docDate"></strong>
+      <br>振込期日：2026年6月30日
+    </div>
+  </div>
+
+  <!-- 宛先 -->
+  <div class="recipient-block">
+    <h3>▼ お客様情報（ご自身でご入力ください）</h3>
+    <div class="input-row">
+      <label>組織名</label>
+      <input type="text" id="org" placeholder="例：株式会社〇〇" />
+    </div>
+    <div class="input-row">
+      <label>お名前</label>
+      <input type="text" id="name" placeholder="例：山田 太郎" />
+    </div>
+  </div>
+
+  <!-- 挨拶文 -->
+  <div class="greeting">
+    <span id="orgDisplay" style="font-weight:bold;"></span><span id="orgSpacer"></span><span id="nameDisplay" style="font-weight:bold;"></span>様<br><br>
+    先日は面談させていただき、誠にありがとうございました。<br>
+    お申し込み頂ける方は、下記の通りお支払いの案内を申し上げます。<br>
+    お振込み後、コミュニティ参加のお知らせをお送り致します。<br>
+    皆様がClaude Codeが活用できる有意義なスクール及びコミュニティにしていければと思いますのでよろしくお願いいたします。
+  </div>
+
+  <!-- 紹介スライド -->
+  <div class="section-title" style="margin-bottom:12px;">紹介スライド</div>
+  <div style="margin-bottom:24px;">
+    <a href="https://drive.google.com/drive/folders/1mfKxjoS8gP88wAq86yRscHp85Y1b3wix?usp=sharing" target="_blank" rel="noopener"
+      style="display:inline-flex;align-items:center;gap:8px;background:#f0f4ff;border:1.5px solid #c5d3f7;border-radius:8px;padding:12px 18px;text-decoration:none;color:#2a4cc7;font-size:13px;font-weight:bold;">
+      📂 畠山式AI税理士コミュニティ 紹介スライドを見る →
+    </a>
+  </div>
+
+  <!-- 商品明細 -->
+  <div class="section-title">ご購入商品</div>
+  <table>
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th class="amount">税抜金額</th>
+        <th class="amount">消費税(10%)</th>
+        <th class="amount">税込金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>畠山式AI税理士コミュニティ、及びユニコスクール</td>
+        <td class="amount">298,800円</td>
+        <td class="amount">29,880円</td>
+        <td class="amount">328,680円</td>
+      </tr>
+      <tr class="total-row">
+        <td>合計</td>
+        <td class="amount">298,800円</td>
+        <td class="amount">29,880円</td>
+        <td class="amount">328,680円</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- お支払方法 -->
+  <div class="section-title" style="margin-bottom:14px;">お支払方法</div>
+  <div class="payment-card">
+    <h4>🏦 銀行振込</h4>
+    <div class="bank-row"><span class="bank-label">銀行名</span><span class="bank-val">三井住友銀行</span></div>
+    <div class="bank-row"><span class="bank-label">支店名</span><span class="bank-val">京都支店（496）</span></div>
+    <div class="bank-row"><span class="bank-label">口座種別</span><span class="bank-val">普通</span></div>
+    <div class="bank-row"><span class="bank-label">口座番号</span><span class="bank-val">8761117</span></div>
+    <div class="bank-row"><span class="bank-label">口座名義</span><span class="bank-val">ハタケヤマ　ケント</span></div>
+    <div style="margin-top:12px;font-size:12px;color:#666;line-height:1.7;">
+      ※振込手数料はご負担をお願い申し上げます。
+    </div>
+  </div>
+
+  <!-- 振込後の流れ -->
+  <div class="after-box">
+    <h4>🔹 振込後のご連絡について</h4>
+    振込が完了しましたら、下記メールアドレス宛に以下をお知らせください。<br>
+    ✅ 振込名義（カタカナ表記）<br><br>
+    <strong>送付先：</strong><a href="mailto:khatakeyama@cpa-office.xyz">khatakeyama@cpa-office.xyz</a>
+  </div>
+
+  <!-- お問い合わせ -->
+  <div class="contact-box">
+    <h4>🔹 ご不明な点がございましたら</h4>
+    畠山謙人税理士事務所 直通：<strong>090-8529-5603</strong><br>
+    メール：<a href="mailto:khatakeyama@cpa-office.xyz">khatakeyama@cpa-office.xyz</a><br>
+    お気軽にお電話・メールいただけますと幸いです。
+  </div>
+
+  <!-- 注記 -->
+  <div style="margin-top:20px;font-size:12px;color:#888;text-align:center;">
+    ※当資料は請求書を兼ねており、個別でPDF保存頂ければ幸いです。
+  </div>
+
+  <!-- 発行者 -->
+  <div class="issuer">
+    <strong>畠山謙人税理士事務所</strong>
+    〒602-8134 京都市上京区大宮通丸太町上る一町目８４２<br>
+    登録番号：T9810189636869
+  </div>
+
+</div>
+
+<script>
+  const today = new Date();
+  const fmt = d => `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  document.getElementById('docDate').textContent = fmt(today);
+
+  const orgInput = document.getElementById('org');
+  const nameInput = document.getElementById('name');
+  const orgDisplay = document.getElementById('orgDisplay');
+  const nameDisplay = document.getElementById('nameDisplay');
+  const orgSpacer = document.getElementById('orgSpacer');
+
+  function updateGreeting() {
+    orgDisplay.textContent = orgInput.value;
+    nameDisplay.textContent = nameInput.value;
+    orgSpacer.textContent = (orgInput.value && nameInput.value) ? '　' : '';
+  }
+
+  orgInput.addEventListener('input', updateGreeting);
+  nameInput.addEventListener('input', updateGreeting);
+
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycby67yB_2zSawpDXQnKpWuiPlrzMO_w4Q95zJ6JSCpC9Zo2mwq-l3_eEgDB_nuSayNsd1g/exec';
+
+  function sendAndPrint() {
+    const org = orgInput.value.trim();
+    const name = nameInput.value.trim();
+    // データをGASに送信（バックグラウンド）
+    fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ org: org || '（未入力）', name: name || '（未入力）' })
+    }).catch(() => {}); // エラーは無視して印刷を続行
+    // 少し待ってから印刷
+    setTimeout(() => window.print(), 300);
+  }
+</script>
+
+</body>
+</html>
