@@ -146,6 +146,7 @@
   table tbody tr:nth-child(even) { background: #f8f9fc; }
   table tbody td { padding: 10px 14px; }
   .amount { text-align: right; font-weight: bold; }
+  .discount-row td { color: #c0392b; }
   .total-row td { border-top: 2px solid #1a1a2e; font-weight: bold; font-size: 15px; }
 
   /* Payment card */
@@ -283,16 +284,22 @@
     </thead>
     <tbody>
       <tr>
-        <td>畠山式AI税理士コミュニティ、及びユニコスクール</td>
+        <td>畠山式AI税理士コミュニティ、及びユニコスクール（定価）</td>
         <td class="amount">298,800円</td>
         <td class="amount">29,880円</td>
         <td class="amount">328,680円</td>
       </tr>
+      <tr class="discount-row">
+        <td>ユニコスクール生割引</td>
+        <td class="amount">▲198,800円</td>
+        <td class="amount">▲19,880円</td>
+        <td class="amount">▲218,680円</td>
+      </tr>
       <tr class="total-row">
         <td>合計</td>
-        <td class="amount">298,800円</td>
-        <td class="amount">29,880円</td>
-        <td class="amount">328,680円</td>
+        <td class="amount">100,000円</td>
+        <td class="amount">10,000円</td>
+        <td class="amount">110,000円</td>
       </tr>
     </tbody>
   </table>
