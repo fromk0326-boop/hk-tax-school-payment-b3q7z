@@ -155,11 +155,13 @@
     gap: 12px;
     margin-bottom: 8px;
     flex-wrap: wrap;
+    align-items: stretch;
   }
   .plan-option {
     cursor: pointer;
     flex: 1;
     min-width: 220px;
+    display: flex;
   }
   .plan-option input[type="radio"] { display: none; }
   .plan-card {
@@ -168,6 +170,10 @@
     padding: 14px 18px;
     transition: border-color 0.2s, background 0.2s;
     background: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .plan-option input[type="radio"]:checked + .plan-card {
     border-color: #4f8ef7;
